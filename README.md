@@ -132,4 +132,15 @@ After installation, use `http://SERVER_IP:8080` for approved LAN access or your 
 
 Read [configuration and security](docs/CONFIGURATION.md) and [operations and troubleshooting](docs/OPERATIONS.md). For backups, save **both the PostgreSQL database and `/etc/upwatch/vault.key`**, plus `/etc/upwatch/upwatch.env`; without the key, encrypted credentials may be unrecoverable.
 
-**Licence / contact:** A software licence and public security contact have **not been specified in the supplied release**. Repository owners must choose and publish these before public distribution. No licence is implied.
+**Licence / contact:** 
+License
+
+upWATCH! is released under the PolyForm Noncommercial License 1.0.0.
+
+You are welcome to use, study, modify, and redistribute upWATCH! for noncommercial purposes in accordance with the license terms.
+
+Commercial use requires separate written permission from the copyright holder.
+
+For the complete license terms, see LICENSE.
+
+This project is source-available software and is not licensed under an OSI-approved open-source license.
