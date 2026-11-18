@@ -1,0 +1,383 @@
+/* upWATCH! — full-width, compact slate workspace */
+:root{color-scheme:dark;--bg:#252a30;--panel:#30363d;--line:#434b54;--text:#edf0f2;--muted:#a2acb5;--mint:#a3baa5;--green:#a1c1a5;--orange:#d7b179;--red:#e49393}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:13px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer;border:0}button:disabled{opacity:.45;cursor:default}button:focus-visible,a:focus-visible{outline:2px solid var(--mint);outline-offset:3px}a{color:inherit;text-decoration:none}[hidden]{display:none!important}
+.brand{font-weight:750;font-size:24px;letter-spacing:-1px;display:flex;align-items:center;gap:9px;white-space:nowrap}.logo{background:var(--mint);color:#26372c;border:1px solid #b3c8b4;border-radius:7px;font-size:27px;line-height:30px;width:29px;text-align:center;font-weight:600;flex-shrink:0}.brand-sub{font-size:8px;letter-spacing:1.2px;color:#a2afa5;font-weight:550;align-self:center;margin:3px 0 0 7px}.muted{color:var(--muted);line-height:1.6}
+.primary,.secondary,.danger{border-radius:6px;padding:9px 12px;font-weight:600;white-space:nowrap;line-height:1.3}.primary{background:var(--mint);color:#23362a;border:1px solid #b3c9b4}.primary:hover{background:#b5cbb6}.secondary{background:#353d45;border:1px solid #4c5761;color:#d8dfe3}.secondary:hover{background:#424d56}.danger{background:#a45359;color:white}.icon-button{background:transparent;color:#aab5bf;font-size:19px;padding:5px 7px;border-radius:5px;line-height:1}.icon-button:hover{background:#46505a;color:white}
+.workspace{width:100%;min-height:100vh}header{height:57px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:0 22px;background:#2a3036;gap:16px}.header-right,.user{display:flex;gap:12px;align-items:center}.header-right{gap:24px}.user{font-size:11px;gap:8px}.monitor-live{font-size:10px;color:#b3beb6}.avatar{width:26px;height:26px;border:1px solid #637566;border-radius:50%;background:#3d4b41;color:#d4e1d4;display:grid;place-items:center}.live-dot,.dot{display:inline-block;flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:5px}.green{background:var(--green)}.orange{background:var(--orange)}.red{background:var(--red)}.green-text{color:var(--green)}.orange-text{color:var(--orange)}.red-text{color:var(--red)}
+main{width:100%;max-width:none;margin:0;padding:0 20px 12px}.overview-strip{display:flex;align-items:center;flex-wrap:wrap;gap:10px 25px;padding:13px 0;border-bottom:1px solid var(--line);min-height:52px}.overview-label{background:none;color:#c8d0d6;font-size:11px;font-weight:600;padding:3px 0}.stat{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);white-space:nowrap}.stat .dot{margin:0}.stat strong{font-weight:650;font-size:16px}.overview-note{margin-left:auto;color:#87958d;font-size:10px}
+.services{margin-top:13px}.section-top{display:flex;justify-content:space-between;align-items:center;gap:10px 20px;flex-wrap:wrap;margin-bottom:13px}h2{font-size:14px;font-weight:600;letter-spacing:-.2px;margin:0}.section-top h2{flex-shrink:0}.section-top h2 span{font-size:10px;border:1px solid #53606b;border-radius:4px;color:#b9c3cb;padding:2px 6px;margin-left:5px}.toolbar{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:8px 12px;flex:1}.filters,.top-actions{display:flex;align-items:center;gap:7px}.top-actions button{font-size:11px}.search{display:flex;align-items:center;border:1px solid var(--line);background:#2c333b;border-radius:6px;padding-left:9px;gap:5px}.search span{font-size:20px;color:#a1acb7}.search input{border:0;background:transparent;width:170px;font-size:11px;padding:8px}.filters select{font-size:11px;width:135px;padding:8px 9px}
+input,select{color:var(--text);background:#292f36;border:1px solid #53606c;border-radius:6px;padding:10px 12px;min-width:0}input:focus,select:focus{outline:1px solid var(--mint);border-color:var(--mint)}input::placeholder{color:#9aa6b1}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:12px;align-items:start}.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;overflow:hidden;transition:border-color .15s}.card:hover{border-color:#718175}.card.dragging{opacity:.45}.card.drag-over{border-color:var(--mint)}.card-main{padding:12px 13px 10px}.card-head{display:flex;align-items:center;gap:9px}.service-icon{font-size:19px;width:31px;height:31px;flex-shrink:0;display:grid;place-items:center;background:#3c454d;border:1px solid #505e65;border-radius:7px;color:#b5c7bb}.service-title{min-width:0;flex:1}.service-title h3{font-size:13px;margin:0 0 4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.service-title p{font:10px ui-monospace,monospace;color:#abb5be;margin:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.grip{cursor:grab;touch-action:none;font-size:21px;padding:3px}.card-status{display:flex;align-items:center;justify-content:space-between;margin:13px 0 12px;gap:6px}.badge{font-size:11px;font-weight:550;border-radius:5px;padding:5px 8px;background:#35463b;color:var(--green);border:1px solid #536b59}.badge.warning{color:var(--orange);background:#453e33;border-color:#756344}.badge.error,.badge.down{color:var(--red);background:#49373c;border-color:#79535a}.badge.pending{color:#c1c9d0;background:#3a434d;border-color:#586570}.latency{font-size:16px;font-weight:500;color:#e1e6e9;font-variant-numeric:tabular-nums}.latency small{font-size:10px;color:#a1aeb9}.history-label{display:flex;justify-content:space-between;gap:5px;font-size:8px;letter-spacing:.2px;color:#a1adb7;margin-bottom:6px}.history{display:flex;height:16px;gap:2px;align-items:stretch}.history span{flex:1;min-width:1px;border-radius:2px;background:#414b54}.history span.up{background:#789680}.history span.warning{background:#b49768}.history span.down,.history span.error{background:#b47b81}.history span.blank{background:#424c55}
+.card-bottom{padding:7px 8px 7px 13px;background:#2b3239;border-top:1px solid #434c55;display:flex;gap:5px;justify-content:space-between;align-items:center;min-height:43px}.card-bottom small{font-size:9px;color:#adb7c0;line-height:1.5}.card-actions{display:flex;align-items:center;gap:1px}.card-actions button{font-size:15px;padding:6px 5px}.type-label{font-size:8px;font-weight:600;letter-spacing:.4px;margin-right:3px;color:#a6b7ae}
+.eyebrow{font-size:9px;letter-spacing:1.5px;color:#b1bcb5;font-weight:600}h1{font-size:27px;letter-spacing:-.8px;font-weight:640;line-height:1.25;margin:13px 0 10px}footer{display:flex;justify-content:space-between;gap:10px;margin-top:15px;padding-top:10px;border-top:1px solid var(--line);color:#9ca9a1;font-size:9px;letter-spacing:.2px}footer .live-dot{width:5px;height:5px}.focus-mode #dashboard header,.focus-mode .overview-strip,.focus-mode footer{display:none}.focus-mode .services{margin-top:12px}.focus-mode #focus-mode{background:#3b5040;border-color:#7f9983;color:#c7dfcb}
+.empty{text-align:center;border:1px dashed #354555;border-radius:10px;padding:58px 20px;color:var(--muted)}.empty h2{color:#e0e8f0;margin:17px 0 10px}.empty p{font-size:12px;margin-bottom:23px}.empty-icon{color:var(--mint);font-size:36px}dialog{background:#30363d;color:var(--text);border:1px solid #3a4859;border-radius:13px;max-width:520px;width:calc(100% - 28px);padding:28px;box-shadow:0 30px 100px #0007}dialog::backdrop{background:#060b13bb;backdrop-filter:blur(4px)}.dialog-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}.dialog-top h2{font-size:21px;margin-top:9px}label{display:flex;flex-direction:column;gap:8px;font-size:12px;color:#b9c5d4}form>label{margin-top:17px}label small{font-size:10px;color:#8294a9;line-height:1.5}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:17px}.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:24px}.hint{font-size:11px;margin-top:18px}.form-error{font-size:12px;color:var(--red);line-height:1.5}.login{min-height:100vh;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 20%,#607a6830,transparent 60%)}.login-card{width:390px;max-width:calc(100vw - 35px);padding:35px;border:1px solid #344039;border-radius:14px;background:#30363d}.brand-sub{font-size:8px;letter-spacing:1.3px;color:#87998e;font-weight:600;align-self:flex-end;margin:0 0 6px 4px}.login-card h1{margin-top:36px}.login-card p{font-size:12px}.login-card>.primary{width:100%;display:flex;justify-content:space-between;margin-top:20px}.login-card>small{display:block;text-align:center;color:#718294;font-size:10px;margin-top:25px}#toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#35463b;color:#d1dfd2;border:1px solid #657d69;box-shadow:0 8px 25px #0005;padding:13px 23px;border-radius:8px;z-index:20;max-width:90vw;font-size:12px}#toast.error{background:#452b30;border-color:#9d555f;color:#ffc1c7}
+/* Compact dialogs remain comfortably readable. */
+.login-card .brand{flex-wrap:wrap}.login-card .brand-sub{flex-basis:100%;margin:2px 0 0 38px}.login-card>h1{font-size:27px}.login-card{width:410px}.dialog-top .eyebrow{font-size:9px}
+@media(max-width:1050px){.overview-strip{gap:10px 19px}.overview-note{display:none}.section-top{align-items:flex-start}.toolbar{justify-content:flex-end}.search input{width:145px}}
+
+
+/* Fixed viewport: the widget region owns scrolling, including on mobile. */
+html,body{height:100%;overflow:hidden}#dashboard{height:100vh;height:100dvh;overflow:hidden}.workspace{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}#dashboard header{flex:0 0 57px}#dashboard main{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}#dashboard .overview-strip,#dashboard .section-top,#dashboard footer{flex-shrink:0}#dashboard .services{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}#dashboard .widget-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scrollbar-gutter:stable;padding:1px 3px 12px 1px;-webkit-overflow-scrolling:touch;scrollbar-color:#647669 #2b3239}.widget-scroll:focus-visible{outline:1px solid var(--mint);outline-offset:-1px}.grid{align-content:start}.logo{display:grid;place-items:center;line-height:1}.logo svg{width:27px;height:27px}.filters .search{display:flex;flex-direction:row;align-items:center;flex-wrap:nowrap;gap:6px}.search-icon{width:17px;height:17px;flex:0 0 17px;fill:none;stroke:currentColor;stroke-width:1.8;color:#afbbb4}.search input{min-width:0;flex:1}.filters{min-width:0}.login{height:100vh;height:100dvh;min-height:0;overflow:auto;padding:20px 0}.login-card{flex-shrink:0}.settings-dialog{width:min(540px,calc(100% - 24px));max-width:calc(100% - 24px)}.settings-tabs{display:flex;border-bottom:1px solid var(--line);gap:8px;margin-bottom:16px}.settings-tabs button{background:none;color:var(--muted);padding:12px;border-bottom:2px solid transparent}.settings-tabs [aria-selected=true]{color:var(--mint);border-bottom-color:var(--mint)}dialog{max-height:calc(100vh - 28px);max-height:calc(100dvh - 28px);overflow:auto;overscroll-behavior:contain}dialog form{min-width:0}dialog input,dialog select{width:100%;font-size:16px}dialog .checkbox{display:flex;flex-direction:row;align-items:center;gap:10px;line-height:1.5;margin:12px 0;cursor:pointer}dialog input[type=checkbox]{accent-color:var(--mint);width:19px;height:19px;flex:0 0 19px;padding:0}.notifications{border:1px solid var(--line);border-radius:7px;margin:20px 0 0;padding:8px 13px}.notifications legend{font-size:12px;color:#c5d0c8;padding:0 5px}.notifications small,.delivery-box small{font-size:11px;line-height:1.6;color:var(--muted)}.delivery-box{border-top:1px solid var(--line);margin-top:22px;padding-top:18px}.delivery-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.delivery-top strong{font-size:12px}.delivery-top button{font-size:10px}.delivery-box p{font-size:12px;overflow-wrap:anywhere}.focus-mode #dashboard header,.focus-mode #dashboard .overview-strip,.focus-mode #dashboard footer{display:none}
+
+
+
+.login{display:flex;align-items:center;justify-content:center}.login-card{margin:auto}.delivery-box>button{display:block;margin:10px 0}.delivery-box>small{display:block;margin-top:9px}header{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}.widget-scroll{touch-action:pan-y}.top-actions button,.dialog-actions button{min-height:36px}@media(pointer:coarse){.icon-button{min-height:40px;min-width:36px}.card-actions button{min-height:40px;min-width:36px}.grip{min-width:25px}.filters input,.filters select{min-height:40px}}
+.connection-warning{flex-shrink:0;margin:10px 0 0;padding:9px 12px;border:1px solid #806741;border-radius:6px;color:var(--orange);background:#453e33;font-size:12px;line-height:1.5}.card.stale{border-color:#a88b57}.card.stale .badge.up{background:#3a4039;color:#bec8bd;border-color:#797b5a}.card.stale .history-label{color:var(--orange)}#app-version{color:#a0ada5;margin-left:auto;white-space:nowrap}.focus-mode .connection-warning{display:block}.focus-mode .connection-warning[hidden]{display:none}
+/* Login remains scrollable independently of the fixed dashboard, including a small keyboard viewport. */
+.login{height:100vh;height:100dvh;overflow-y:auto;overflow-x:hidden;align-items:flex-start;padding:max(20px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));scroll-padding:20px;-webkit-overflow-scrolling:touch}.login-card{width:410px;max-width:100%;min-width:0;margin:auto;padding:28px}.login-credentials{border:0;padding:0;margin:0;min-width:0}.login-credentials>label{margin-top:17px}.login-card input:not([type=checkbox]){width:100%;font-size:16px;line-height:1.4;min-height:46px}.login-card button.primary{min-height:46px;font-size:14px}.login-card .checkbox{display:flex;flex-direction:row;gap:9px;align-items:center}.login-card input[type=checkbox]{width:19px;height:19px;accent-color:var(--mint)}.password-toggle{font-size:11px}.text-button{display:block;background:none;color:var(--mint);padding:10px 0;text-align:left;font-size:12px;min-height:40px}.mfa-settings{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}.mfa-settings>p{font-size:12px;line-height:1.6}.mfa-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:15px 0}.mfa-actions>*{font-size:12px;white-space:normal;min-height:40px}.mfa-actions a{display:inline-flex;align-items:center}#mfa-enrollment{padding:14px;border:1px solid var(--line);border-radius:8px;margin-top:18px;overflow-wrap:anywhere}#mfa-enrollment label{margin:12px 0}#mfa-secret{font:14px ui-monospace,monospace}textarea{width:100%;padding:12px;background:#242b32;color:var(--text);border:1px solid #53606c;border-radius:6px;font:12px/1.8 ui-monospace,monospace;resize:vertical}#recovery-dialog>p{font-size:12px;line-height:1.6}#recovery-done{width:100%;min-height:44px}.badge.maintenance{background:#38404a;color:#c4cfda;border-color:#65717f}.card.maintenance{border-style:dashed}.card.maintenance .history{opacity:.55}.card.maintenance .latency{color:#9ea9b3}.sensitive-mfa{margin-top:16px}.stat{flex-shrink:0}
+.login{height:var(--login-viewport-height,100vh)}.card-bottom{flex-wrap:wrap}.card-actions{margin-left:auto}.login-card button,.login-card a{touch-action:manipulation}
+
+/* Fluid boundaries: shrink the actual children rather than just hiding overflow. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;inline-size:100%;max-inline-size:100%;overflow-x:hidden}
+body{inline-size:100%;max-inline-size:100%;min-inline-size:0;overflow-x:hidden}
+#dashboard,.workspace,#dashboard main,.services,.section-top,.toolbar,.filters,.search,.top-actions,.widget-scroll,.grid,.card,.card-head,.card-bottom,.card-actions,.header-right,.user{min-inline-size:0;max-inline-size:100%}
+header>.brand{min-inline-size:0}.header-right{flex-shrink:0}
+.search{min-width:0}.search input{flex:1 1 0%;width:0;min-width:0;max-width:100%}
+dialog,.settings-dialog{width:min(540px,calc(100% - 24px));max-width:calc(100% - 24px);min-width:0;margin:auto}
+dialog form,dialog section,dialog fieldset,.notifications,.mfa-settings,#mfa-enrollment{min-width:0;max-width:100%}
+dialog fieldset{width:100%}.notifications legend{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+dialog label,dialog p,dialog small,.login-card p,.login-card small{overflow-wrap:anywhere}
+input:not([type=checkbox]),select,textarea{max-width:100%;min-width:0;box-sizing:border-box}
+.dialog-actions{flex-wrap:wrap}.dialog-actions>button{min-width:0;max-width:100%;white-space:normal}
+.mfa-actions>*{min-width:0;max-width:100%;overflow-wrap:anywhere}
+#toast{width:max-content;max-width:calc(100% - 24px);overflow-wrap:anywhere}
+.action-icon{display:inline-block;flex-shrink:0}.top-actions button{display:inline-flex;align-items:center;justify-content:center;gap:5px}
+.stat-label-short{display:none}
+
+/* Compact phone/tablet layout, including common phone landscape widths. */
+@media(max-width:900px){
+  #dashboard header{height:48px;flex:0 0 48px;padding:0 max(10px,env(safe-area-inset-right)) 0 max(10px,env(safe-area-inset-left));gap:8px}
+  header .brand{font-size:20px;gap:7px}header .logo{width:27px;height:27px}header .logo svg{width:25px;height:25px}
+  header .brand-sub,.monitor-live{display:none}.header-right{gap:0}.user{gap:3px}#user-name{max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #dashboard main{padding:0 10px max(6px,env(safe-area-inset-bottom))}
+  .overview-label,.overview-note{display:none}.overview-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;min-height:0;padding:7px 0}
+  .stat{min-width:0;flex-direction:column;justify-content:center;gap:2px;text-align:center;white-space:normal;line-height:1.15}
+  .stat strong{font-size:14px;line-height:1.1}.stat>span{font-size:9px;overflow-wrap:anywhere}.stat>.dot{display:none}.stat-label-long{display:none}.stat-label-short{display:inline}
+  .services{margin-top:8px}.section-top{margin-bottom:8px;gap:8px}.section-top>h2{display:none}
+  .toolbar{display:grid;grid-template-columns:minmax(0,1fr);width:100%;gap:6px}
+  .filters{display:grid;grid-template-columns:minmax(0,1fr) minmax(118px,.75fr);width:100%;gap:6px}
+  .filters .search{width:100%;min-width:0;gap:5px;padding-left:8px}.search-icon{width:16px;height:16px;flex-basis:16px}
+  .filters .search input{width:0;min-width:0;max-width:100%;font-size:16px;line-height:1.2;min-height:40px;padding:7px 8px}
+  .filters select{width:100%;min-width:0;max-width:100%;font-size:16px;line-height:1.2;min-height:40px;padding:7px 8px}
+  .top-actions{display:grid;grid-template-columns:40px 40px minmax(0,1fr);width:100%;gap:6px;margin:0}
+  .top-actions button{width:100%;min-width:0;min-height:40px;margin:0;padding:7px 8px;font-size:12px;white-space:normal;line-height:1.2}
+  #focus-mode .action-label,#check-all .action-label{display:none}#focus-mode .action-icon,#check-all .action-icon{font-size:19px}
+  #dashboard .widget-scroll{scrollbar-gutter:auto;padding:1px 0 8px;overflow-x:hidden}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:8px}
+  .card-main{padding:10px}.card-head{gap:8px}.service-icon{width:29px;height:29px;font-size:18px}
+  .service-title h3{font-size:13px}.service-title p{font-size:10px}.card-status{margin:10px 0}.badge{font-size:11px;padding:4px 7px}.latency{font-size:15px}
+  .history-label{font-size:8px;margin-bottom:5px}.history{height:12px;gap:2px}
+  .card-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px;padding:4px 7px 4px 10px;min-height:44px}
+  .card-bottom small{font-size:9px;line-height:1.45;min-width:0;overflow-wrap:anywhere}.card-actions{min-width:0;flex-wrap:wrap;justify-content:flex-end;gap:0}
+  .card-actions button{min-width:34px;min-height:38px;padding:6px 5px;font-size:15px}.type-label{font-size:8px;margin-right:2px}
+  .footer-hint{display:none}#dashboard footer{gap:4px 10px;flex-wrap:wrap;margin-top:4px;padding-top:6px;font-size:8px;letter-spacing:0}
+  #app-version{margin-left:auto}footer>span{min-width:0;max-width:100%;overflow-wrap:anywhere}
+  dialog,.settings-dialog{width:min(500px,calc(100% - 20px));max-width:calc(100% - 20px);max-height:calc(100dvh - 20px);padding:18px;border-radius:10px}
+  .dialog-top{margin-bottom:16px;gap:8px}.dialog-top>div{min-width:0}.dialog-top h2{font-size:18px;margin-top:6px}.dialog-top>.icon-button{flex-shrink:0}
+  .form-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:13px}form>label{margin-top:13px}
+  dialog label{font-size:11px;gap:6px}dialog input:not([type=checkbox]),dialog select{font-size:16px;min-height:42px;padding:8px 9px}
+  .notifications{padding:7px 10px;margin-top:15px}.notifications legend{font-size:11px}.notifications small,.delivery-box small{font-size:10px}
+  .hint,.form-error{font-size:11px}.dialog-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:18px}
+  .dialog-actions button{width:100%;min-height:40px;padding:8px;font-size:12px}
+  .settings-tabs{gap:4px;margin-bottom:12px}.settings-tabs button{flex:1;min-width:0;font-size:12px;padding:10px 6px;white-space:normal}
+  .mfa-settings{margin-top:20px;padding-top:16px}.mfa-settings>h2{font-size:15px}.mfa-settings>p{font-size:11px}
+  #mfa-enrollment{padding:10px;margin-top:13px}.mfa-actions{display:grid;grid-template-columns:minmax(0,1fr);gap:7px;margin:12px 0}
+  .mfa-actions>*{width:100%;min-width:0;min-height:40px;font-size:12px;white-space:normal;justify-content:center;text-align:center;padding:8px}
+  .delivery-top{flex-wrap:wrap}.delivery-top button{min-width:0;max-width:100%}
+  .login{padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+  .login-card{width:360px;max-width:100%;padding:20px;border-radius:11px}.login-card .brand{font-size:23px;gap:8px}.login-card .brand-sub{display:block;font-size:8px;margin-left:37px}
+  .login-card>h1{font-size:23px;margin-top:22px;margin-bottom:8px}.login-card>p{font-size:12px;line-height:1.5}
+  .login-credentials>label{margin-top:13px}.login-card input:not([type=checkbox]){font-size:16px;min-height:44px;padding:8px 10px;line-height:1.3}
+  .login-card button.primary{min-height:44px;margin-top:15px;font-size:13px}.login-card>small{margin-top:17px}.login-card .form-error{font-size:12px}
+  #toast{width:calc(100% - 24px);padding:11px 13px;font-size:12px;bottom:max(12px,env(safe-area-inset-bottom))}
+}
+@media(max-width:540px){
+  #user-name,.user>.avatar{display:none}.user{gap:4px}.user>.icon-button{min-width:36px;min-height:40px;padding:6px}
+  .grid{grid-template-columns:minmax(0,1fr)}.type-label{display:none}
+  .login-card{padding:18px}.login-card>h1{font-size:22px;margin-top:19px}
+  #recovery-codes{font-size:11px;padding:9px;line-height:1.8}
+}
+@media(max-width:900px) and (max-height:500px) and (orientation:landscape){
+  .overview-strip,#dashboard footer{display:none}#dashboard header{height:44px;flex-basis:44px}
+  .toolbar{grid-template-columns:minmax(0,1fr) minmax(220px,.9fr);gap:8px}.services{margin-top:6px}
+  .login-card{margin:0 auto;padding:16px 20px}.login-card>h1{margin-top:14px}.login-card>small{margin-top:12px}
+}
+@media(max-width:380px){
+  #dashboard main{padding-left:8px;padding-right:8px}.filters{grid-template-columns:minmax(0,1fr) 118px}
+  .top-actions{grid-template-columns:38px 38px minmax(0,1fr)}.top-actions button{font-size:11px}.stat>span{font-size:8px}
+}
+@media(max-width:900px){.empty{padding:30px 14px}.empty h2{font-size:15px}.empty .primary{max-width:100%;min-width:0;white-space:normal}}
+/* Greenfield preview: keep original color palette and layout; hide unimplemented MFA panel. */
+.mfa-qr-wrap{display:flex;align-items:center;flex-direction:column;gap:6px;margin:14px 0}.mfa-qr-wrap img{display:block;width:240px;height:240px;max-width:100%;background:#fff;padding:8px;border-radius:8px;object-fit:contain}.mfa-qr-wrap p{text-align:center;margin:0}
+#logs-items .delivery-box{margin-top:10px;padding-top:10px}
+
+
+/* Dev 5.1: Consistent dropdown arrow inset, keeping the original dashboard design. */
+select:not([multiple]) {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23b8c8c0' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px 14px;
+  padding-right: 40px;
+}
+select:not([multiple]):disabled { opacity: .55; }
+
+/* Dev 6 – same palette, redesigned responsive toolbar and group organization */
+select:not([multiple]){background-position:right 7px center;padding-right:32px}
+#grid{display:block}.widget-group{margin-bottom:18px;min-width:0}.widget-group-heading{display:flex;align-items:center;gap:10px;color:#dce7df;font-size:14px;padding:9px 2px;border-bottom:1px solid #435047;margin-bottom:12px}.widget-group-heading .group-toggle{background:transparent;border:0;color:#b9ccc0;font-size:20px;cursor:pointer;min-width:34px;min-height:34px}.group-stats{margin-left:auto;color:#98aa9f;font-size:11px}.group-grid[hidden]{display:none!important}.widget-tags{display:flex;flex-wrap:wrap;gap:5px;margin:9px 0 0}.widget-tag{border:1px solid var(--tag-color);border-radius:12px;padding:2px 8px;color:#eaf1f5;font-size:10px;background:color-mix(in srgb,var(--tag-color) 20%,#242b31)}.org-panel{border-top:1px solid #475148;margin-top:20px;padding-top:16px}.org-panel h3{font-size:14px;margin:0 0 12px}.org-inline{display:flex;align-items:center;gap:8px}.org-inline input:not([type=color]){flex:1;min-width:0}.org-inline input[type=color]{height:40px;width:47px;padding:3px;flex-shrink:0}.org-inline button{min-height:40px}.org-list{display:grid;gap:5px;margin-top:12px}.org-item{display:flex;gap:5px;align-items:center;padding:7px 3px;border-bottom:1px solid #3d4843}.org-item strong{flex:1;min-width:0;overflow-wrap:anywhere;font-size:12px}.org-item .icon-button{min-width:32px}.tag-dot{display:inline-block;flex:0 0 12px;width:12px;height:12px;border-radius:50%}.org-checks{display:flex;flex-wrap:wrap;gap:10px}.org-tag-option{display:flex;align-items:center;flex-direction:row;gap:7px;padding:6px 8px;border:1px solid #53605a;border-radius:8px;cursor:pointer}.org-tag-option input{width:18px;height:18px;accent-color:#a4c6ae}
+/* Clean mode: the only application controls visible are the cards and the floating toggle. */
+body.focus-mode #dashboard header,body.focus-mode #dashboard .overview-strip,body.focus-mode #dashboard footer,body.focus-mode #dashboard .section-top,body.focus-mode #dashboard .widget-group-heading,body.focus-mode #dashboard #empty,body.focus-mode #dashboard #no-results,body.focus-mode #dashboard .connection-warning,body.focus-mode #dashboard #app-version{display:none!important}
+body.focus-mode #dashboard .services{margin-top:0!important}body.focus-mode #dashboard main{padding-top:66px!important}body.focus-mode #dashboard .widget-scroll{padding-top:2px}body.focus-mode #dashboard .widget-group{margin:0 0 12px}body.focus-mode #dashboard .group-grid{display:grid!important}body.focus-mode #dashboard .top-actions{display:contents!important}body.focus-mode #focus-mode{display:flex!important;position:fixed;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));z-index:30;background:#3b5040;color:#e0f2e3;border:1px solid #7f9983;border-radius:12px;min-width:48px;width:auto;min-height:44px;padding:8px 13px;box-shadow:0 5px 22px #0008}body.focus-mode #focus-mode .action-label{display:inline!important}
+@media(max-width:900px){
+  #dashboard main{padding-left:12px;padding-right:12px}
+  .section-top{display:block!important}.toolbar{display:flex!important;flex-direction:column;width:100%;gap:10px}.filters{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:8px}.filters .search{grid-column:1/-1}.filters select{width:100%;min-width:0;min-height:44px;padding:9px 32px 9px 11px;font-size:14px}
+  .top-actions{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px}.top-actions button{width:100%;min-width:0;min-height:44px;padding:7px 3px;font-size:12px;overflow:hidden}.top-actions .action-label{display:none!important}.top-actions .action-icon{display:inline-block;font-size:22px!important}
+  .widget-group-heading{font-size:13px;gap:5px}.group-stats{font-size:10px}
+  #dashboard .widget-scroll{padding-bottom:12px}
+  body.focus-mode #dashboard .section-top{display:none!important}body.focus-mode #focus-mode{display:flex!important}body.focus-mode #focus-mode .action-label{display:inline!important}
+}
+@media(max-width:540px){.grid{grid-template-columns:minmax(0,1fr)!important}.org-inline{flex-wrap:wrap}.org-inline input:not([type=color]){min-width:130px}.org-item .icon-button{padding:5px}.widget-group{margin-bottom:12px}}
+
+body.focus-mode > #focus-mode{position:fixed!important;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));z-index:100;background:#3b5040;color:#e0f2e3;border:1px solid #7f9983;border-radius:12px;padding:10px 14px;display:inline-flex;align-items:center;gap:8px;font-size:13px;box-shadow:0 6px 24px #0008}body.focus-mode > #focus-mode .action-label{display:inline!important}
+
+/* iPhone: all five toolbar actions have their own equal-width touch target. */
+@media(max-width:900px){.top-actions{grid-template-columns:repeat(5,minmax(0,1fr))!important}.top-actions button{overflow:visible!important;min-width:0!important}.filters{grid-template-columns:repeat(2,minmax(0,1fr))!important}.filters #filter{grid-column:1/-1}.filters .search{grid-column:1/-1}.section-top{margin-bottom:9px}}
+body.focus-mode #dashboard main > div[style]{display:none!important}
+
+/* Dev 6.1: desktop-only compact tools menu; mobile layout remains unchanged. */
+.desktop-tools{position:relative;display:inline-flex;min-width:0;align-items:stretch}
+.desktop-tools>summary{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;cursor:pointer;list-style:none;white-space:nowrap;padding:9px 14px;border-radius:9px}
+.desktop-tools>summary::-webkit-details-marker{display:none}
+.desktop-tools>summary:focus-visible,.desktop-tool:focus-visible{outline:2px solid #9dbca8;outline-offset:2px}
+.desktop-tools-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:50;min-width:208px;display:grid;gap:3px;padding:7px;border:1px solid #53605a;border-radius:11px;background:#2d3539;box-shadow:0 12px 30px #0008}
+.desktop-tools-menu .desktop-tool{width:100%;display:block;text-align:left;white-space:nowrap;border:0;border-radius:7px;background:transparent;color:#e6eee9;padding:11px 12px;cursor:pointer;font:inherit;font-size:13px}
+.desktop-tools-menu .desktop-tool:hover{background:#42534a}
+.mobile-tools{display:none}
+body.focus-mode #desktop-tools,body.focus-mode #mobile-tools{display:none!important}
+@media(max-width:900px){.desktop-tools{display:none!important}.mobile-tools{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 8px}}
+
+/* Dev 6.2: desktop pointer detection. Narrow desktop windows must not display
+   the mobile-only buttons underneath the monitoring cards. Preserve the
+   established phone layout on touch-first devices. */
+@media (hover: hover) and (pointer: fine) {
+  #desktop-tools { display: inline-flex !important; }
+  #mobile-tools { display: none !important; }
+
+}
+
+@media (max-width:900px) and (hover:hover) and (pointer:fine) { .top-actions { grid-template-columns:repeat(6,minmax(0,1fr))!important; } }
+
+/* Dev 6.4: reliable placement based on layout width, not pointer detection.
+   Touch-enabled desktop machines must not show the bottom controls.
+   The familiar phone layout is preserved at 600px and below. */
+@media (min-width: 601px) {
+  #mobile-tools { display: none !important; }
+  #desktop-tools { display: inline-flex !important; }
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  .top-actions { grid-template-columns: repeat(6,minmax(0,1fr)) !important; }
+}
+@media (max-width: 600px) {
+  #desktop-tools { display: none !important; }
+  #mobile-tools { display: flex !important; flex-wrap: wrap; gap: 10px; margin: 18px 0 8px; }
+}
+body.focus-mode #mobile-tools,body.focus-mode #desktop-tools { display:none!important; }
+
+
+/* Dev 6.5 – desktop status counters share the top header row. The mobile
+   dashboard keeps its previously approved overview and toolbar arrangement. */
+@media(min-width:1051px){
+  #dashboard header{gap:clamp(10px,1.2vw,22px)}
+  #dashboard header .brand{flex:0 0 auto}
+  #dashboard header .overview-strip.overview-in-header{
+    display:flex;flex:1 1 auto;min-width:0;min-height:0;
+    padding:0;border:0;gap:clamp(7px,1vw,18px);
+    flex-wrap:nowrap;justify-content:center;
+  }
+  #dashboard header .overview-strip .stat{gap:4px;font-size:10px}
+  #dashboard header .overview-strip .stat strong{font-size:14px}
+  #dashboard header .overview-strip .overview-label{font-size:10px}
+  #dashboard header .overview-strip .overview-note{display:none}
+  #dashboard header .header-right{gap:12px}
+  #dashboard header .monitor-live{display:none}
+  #dashboard header .brand-sub{display:none}
+}
+@media(min-width:1051px) and (max-width:1300px){
+  #dashboard header .overview-strip.overview-in-header{gap:7px}
+  #dashboard header .overview-strip .stat-label-long{display:none}
+  #dashboard header .overview-strip .stat-label-short{display:inline}
+}
+
+@media(min-width:1550px){
+  #dashboard header .overview-strip.overview-in-header .overview-note{display:inline;font-size:10px;white-space:nowrap;margin-left:8px}
+}
+
+
+/* Dev 6.6 desktop header and compact controls. All widget/card styles unchanged. */
+@media (min-width:901px) {
+  #dashboard header{height:60px;flex-basis:60px;gap:16px;padding:0 22px}
+  #dashboard header .brand{flex:0 0 auto;font-size:24px}
+  #dashboard header .brand-sub,#dashboard header .monitor-live{display:none}
+  #dashboard header .header-right{margin-left:auto;gap:12px}
+  #dashboard .overview-strip{display:flex;flex:0 0 auto;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:12px;min-height:65px;padding:9px 0 12px;border-bottom:1px solid var(--line)}
+  #dashboard .overview-strip .overview-label,#dashboard .overview-strip .overview-note{display:none}
+  #dashboard .overview-strip .stat{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px solid #404a51;background:#2c3339;border-radius:9px;min-height:50px;padding:5px 8px}
+  #dashboard .overview-strip .stat strong{font-size:19px;line-height:1.1}
+  #dashboard .overview-strip .stat span{color:#aeb8c2;font-size:10px;white-space:nowrap}
+  #dashboard .overview-strip .stat .dot{display:none}
+  #dashboard .services{margin-top:14px}
+  #dashboard .section-top{display:flex;align-items:center;gap:18px;margin-bottom:15px;flex-wrap:nowrap}
+  #dashboard .section-top>h2{white-space:nowrap}
+  #dashboard .toolbar{display:flex;align-items:center;justify-content:flex-end;flex:1 1 auto;min-width:0;gap:10px}
+  #dashboard .filters{display:flex;align-items:center;gap:8px;min-width:0;flex:1 1 auto;justify-content:flex-end}
+  #dashboard .filters .search{min-width:150px;width:clamp(180px,24vw,360px);max-width:360px;flex:1 1 260px}
+  #dashboard .filters .search input{width:100%;min-width:0}
+  #dashboard .filters > select{display:none}
+  #dashboard .filters .dashboard-filters{display:inline-flex;position:relative;flex:0 0 auto}
+  #dashboard .filters .dashboard-filters>summary{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;list-style:none;cursor:pointer;padding:9px 14px;border-radius:9px}
+  #dashboard .filters .dashboard-filters>summary::-webkit-details-marker{display:none}
+  #dashboard .filter-popover{position:absolute;top:calc(100% + 8px);right:0;z-index:60;display:flex;flex-direction:column;gap:12px;min-width:240px;padding:15px;background:#2d353a;border:1px solid #53605a;border-radius:11px;box-shadow:0 14px 28px #0009}
+  #dashboard .filter-popover label{display:flex;flex-direction:column;gap:6px;color:#bac9c1;font-size:11px;font-weight:600}
+  #dashboard .filter-popover select{width:100%;min-width:0;min-height:39px;padding:9px 32px 9px 11px;font-size:13px}
+  #dashboard .dashboard-filters:not([open]) .filter-popover{display:none}
+  #dashboard .desktop-tools:not([open]) .desktop-tools-menu{display:none}
+  #dashboard .filter-popover button{min-height:38px}
+  #dashboard .active-filters-count:not([hidden]){display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:#87aa95;color:#1d2d25;min-width:17px;height:17px;font-size:10px}
+  #dashboard .top-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex:0 0 auto}
+  #dashboard .top-actions #organize-open,#dashboard .top-actions #logs-open,#dashboard .top-actions #check-all{display:none!important}
+  #dashboard .top-actions #focus-mode{min-width:40px;width:40px;padding:9px}
+  #dashboard .top-actions #focus-mode .action-label{display:none!important}
+  #dashboard .top-actions #focus-mode .action-icon{display:inline!important;font-size:19px}
+  #dashboard .top-actions #add{min-height:40px}
+  #dashboard .top-actions #desktop-tools{display:inline-flex!important}
+  #dashboard .desktop-tools-menu{min-width:230px}
+  #dashboard .desktop-menu-separator{height:1px;background:#4b5857;margin:5px 4px}
+  #dashboard .widget-group,#dashboard .group-grid,#dashboard .card{ /* preserve existing layout */ }
+}
+/* Preserve the approved phone layout: existing three filter selects remain
+   in the same grid positions; only their semantic wrapper is transparent. */
+@media (max-width:900px) {
+  #dashboard .dashboard-filters,#dashboard .filter-popover{display:contents!important}
+  #dashboard .dashboard-filters>summary,#dashboard .filter-popover>button{display:none!important}
+  #dashboard .filter-popover>label{display:contents!important}
+  #dashboard .filter-caption{display:none!important}
+  #dashboard .filters{display:grid!important}
+  #dashboard .filters select{width:100%;min-width:0}
+}
+/* With focus mode, hide all secondary controls even though desktop rules use
+   explicit display declarations above. The floating toggle alone remains. */
+body.focus-mode #dashboard .overview-strip,
+body.focus-mode #dashboard .section-top,
+body.focus-mode #dashboard .dashboard-filters,
+body.focus-mode #dashboard #desktop-tools{display:none!important}
+body.focus-mode #dashboard .top-actions #focus-mode{display:flex!important;position:fixed;top:12px;right:12px;width:auto;min-width:48px;z-index:90}
+body.focus-mode #dashboard .top-actions #focus-mode .action-label{display:inline!important}
+
+/* Dev 7: user-controlled accent and custom logo; existing widget geometry unchanged. */
+.logo .custom-brand-logo{display:block;width:100%;height:100%;object-fit:contain;border-radius:5px}
+.appearance-preview{display:flex;align-items:center;gap:12px;padding:14px 0;font-weight:700;font-size:18px}
+.appearance-preview .custom-brand-logo{width:36px;height:36px;object-fit:contain}
+.primary{background:var(--mint);border-color:var(--mint)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline-color:var(--mint)}
+
+/* Dev 7: three optional full dashboard palettes; widgets keep geometry. */
+:root[data-scheme="navy"]{--bg:#192634;--panel:#26394a;--line:#3c566b;--text:#f1f6fa;--muted:#aec0cd}
+:root[data-scheme="graphite"]{--bg:#1d2023;--panel:#292c30;--line:#474a50;--text:#f3f3f3;--muted:#b0b0b6}
+:root[data-scheme="navy"] body,:root[data-scheme="graphite"] body{background:var(--bg)}
+:root[data-scheme="navy"] #dashboard header{background:#203244}
+:root[data-scheme="graphite"] #dashboard header{background:#25272b}
+:root[data-scheme="navy"] .card-bottom{background:#233547}
+:root[data-scheme="graphite"] .card-bottom{background:#25272b}
+
+/* Dev 7.1: Consistent header action icons on desktop and mobile. */
+#dashboard header .header-action{display:inline-flex;align-items:center;justify-content:center;line-height:1;vertical-align:middle}#dashboard header .header-action-icon{width:19px;height:19px;flex:none;display:block;pointer-events:none}@media(max-width:600px){#dashboard header .header-action{min-height:40px;min-width:40px;padding:8px}#dashboard header .header-action-icon{width:20px;height:20px}}
+
+/* Dev 8.0.4.2: Only WAN-DNS diagnostic text is confined to one line. */
+.card.wan-dns .history-label{min-width:0}
+.card.wan-dns .history-label>span:first-child{flex:0 0 auto}
+.card.wan-dns .history-label>span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 auto;text-align:right}
+.card.wan-dns .card-actions .type-label{white-space:nowrap}
+
+/* Dev 8.0.4.3: WAN-IP is aligned with existing tags; no extra widget row. */
+.card.wan-dns .wan-dns-tags{display:flex;align-items:center;min-width:0;flex-wrap:nowrap;gap:5px}
+.card.wan-dns .wan-dns-tags>.widget-tag:not(.wan-ip-tag){flex:0 1 auto;min-width:0;max-width:40%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card.wan-dns .wan-dns-tags>.wan-ip-tag{margin-left:auto;flex:0 0 auto;max-width:65%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;--tag-color:#64796c;font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.card.wan-dns .history-label>span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* RC3 layout polish: scoped controls only, widget geometry stays unchanged. */
+#dashboard .section-top .search,#dashboard .section-top .dashboard-filters>summary,#dashboard .section-top .desktop-tools>summary,#dashboard .section-top .top-actions>#focus-mode,#dashboard .section-top .top-actions>#add{height:40px;min-height:40px;box-sizing:border-box;align-items:center}
+#dashboard .section-top .search input{height:100%;min-height:0;box-sizing:border-box}
+#dashboard .section-top .dashboard-filters>summary,#dashboard .section-top .desktop-tools>summary{display:inline-flex;justify-content:center;align-items:center;line-height:1.2}
+#dashboard .section-top .top-actions>#focus-mode,#dashboard .section-top .top-actions>#add{display:inline-flex;line-height:1.2}
+@media(max-width:900px){#dashboard .section-top .search,#dashboard .section-top .dashboard-filters>summary,#dashboard .section-top .desktop-tools>summary,#dashboard .section-top .top-actions>#focus-mode,#dashboard .section-top .top-actions>#add{height:44px;min-height:44px}}
+@media(hover:none) and (pointer:coarse){
+  #dashboard .card:hover{border-color:var(--line)}
+  #dashboard .card:focus,#dashboard .card:focus-within{outline:none;box-shadow:none}
+  #dashboard .card.drag-over{border-color:var(--mint)}
+  #dashboard .card button:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+}
+#users-panel .user-add-card{margin-top:22px}
+#users-panel .user-section-heading{margin-bottom:12px}
+#account-current-username[readonly]{color:var(--muted);background:#262d33;cursor:default}
+#smtp-panel .delivery-counts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:12px 0 18px}
+#smtp-panel .delivery-stat{display:flex;min-width:0;flex-direction:column;gap:4px;padding:11px 8px;background:#292f36;border:1px solid var(--line);border-radius:8px;text-align:center}
+#smtp-panel .delivery-stat strong{font-size:20px;font-weight:650;font-variant-numeric:tabular-nums}
+#smtp-panel .delivery-stat span{font-size:10px;color:var(--muted);overflow-wrap:anywhere}
+#smtp-panel .delivery-stat-sent strong{color:var(--green)}
+#smtp-panel .delivery-stat-failed strong{color:var(--red)}
+#smtp-panel .delivery-history-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0 9px}
+#smtp-panel .delivery-history-head strong{font-size:12px}
+#smtp-panel .delivery-history-head label{display:flex;flex-direction:row;align-items:center;gap:8px;font-size:11px}
+#smtp-panel .delivery-history-head select{width:auto;min-width:112px;padding:6px 8px;font-size:12px}
+#smtp-panel .delivery-history{max-height:260px;overflow-y:auto;overscroll-behavior:contain;border:1px solid var(--line);border-radius:8px;background:#292f36}
+#smtp-panel .delivery-entry{padding:10px 12px;border-bottom:1px solid var(--line);min-width:0}
+#smtp-panel .delivery-entry:last-child{border-bottom:0}
+#smtp-panel .delivery-entry-top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px}
+#smtp-panel .delivery-state{font-weight:650;color:var(--muted)}
+#smtp-panel .delivery-state-sent{color:var(--green)}
+#smtp-panel .delivery-state-failed{color:var(--red)}
+#smtp-panel .delivery-entry-date,#smtp-panel .delivery-entry-meta{color:var(--muted);font-size:10px}
+#smtp-panel .delivery-entry-subject{font-size:12px;margin:6px 0 3px;overflow-wrap:anywhere}
+#smtp-panel .delivery-entry-error{font-size:10px;color:var(--red);margin-top:5px;overflow-wrap:anywhere}
+#smtp-panel .delivery-history>p{padding:10px 12px}
+@media(max-width:450px){#smtp-panel .delivery-counts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* upwatch touch widget border hotfix v1 */
+/* A sticky tap-hover must not highlight a whole monitor as selected. */
+html.upwatch-touch #dashboard .card:not(.drag-over):not(.stale):hover,
+html.upwatch-touch #dashboard .card:not(.drag-over):not(.stale):focus,
+html.upwatch-touch #dashboard .card:not(.drag-over):not(.stale):focus-within {border-color:var(--line)!important;outline:none!important;box-shadow:none!important}
+/* Actual stale data keeps its warning color. Drag & drop is unchanged. */
+html.upwatch-touch #dashboard .card.stale:not(.drag-over):hover,
+html.upwatch-touch #dashboard .card.stale:not(.drag-over):focus-within {border-color:#a88b57!important;outline:none!important;box-shadow:none!important}
+
+/* upwatch rc4 report spacing v1 */
+/* Scope limited to settings; monitoring widgets are untouched. */
+#reports-panel .upwatch-report-toolbar{display:flex;align-items:flex-end;flex-wrap:wrap;column-gap:18px;row-gap:14px;margin:18px 0 16px}
+#reports-panel .upwatch-report-toolbar>label{flex:1 1 155px;min-width:140px;margin:0}
+#reports-panel .upwatch-report-actions{display:flex;align-items:center;flex:2 1 260px;flex-wrap:wrap;gap:12px}
+#reports-panel .upwatch-report-actions>button{margin:0;min-height:40px}
+#reports-panel #reports-list{margin-top:12px}
+#audit-panel #audit-download-csv{display:inline-flex;align-items:center;min-height:40px;margin:16px 0 20px}
+#audit-panel #audit-list{margin-top:4px}
+@media(max-width:480px){#reports-panel .upwatch-report-actions{flex-basis:100%}#reports-panel .upwatch-report-actions>button{flex:1 1 180px;min-height:44px}#audit-panel #audit-download-csv{min-height:44px}}
+
+/* upwatch rc4 compact report toolbar v2 */
+/* Only the availability controls; all dashboard widget dimensions unchanged. */
+#reports-panel .upwatch-report-toolbar{display:flex;align-items:flex-end;justify-content:flex-start;flex-wrap:wrap;gap:12px;margin:18px 0 16px}
+#reports-panel .upwatch-report-toolbar>label{flex:0 0 124px;width:124px;min-width:0;max-width:124px;margin:0}
+#reports-panel .upwatch-report-toolbar #reports-days{display:block;width:100%;min-width:0}
+#reports-panel .upwatch-report-actions{display:flex;align-items:center;flex:0 1 auto;flex-wrap:nowrap;gap:10px;min-width:0}
+#reports-panel .upwatch-report-actions>button{flex:0 0 auto;margin:0;min-height:40px;white-space:nowrap}
+@media(max-width:560px){
+  #reports-panel .upwatch-report-toolbar{gap:10px}
+  #reports-panel .upwatch-report-toolbar>label{flex:0 0 132px;max-width:132px}
+  #reports-panel .upwatch-report-actions{flex:1 1 100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%}
+  #reports-panel .upwatch-report-actions>button{width:100%;min-width:0;min-height:44px;white-space:normal;overflow-wrap:anywhere;padding:9px 7px}
+}
+@media(max-width:340px){
+  #reports-panel .upwatch-report-actions{grid-template-columns:minmax(0,1fr)}
+}

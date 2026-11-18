@@ -1,0 +1,24 @@
+[Unit]
+Description=upWATCH! Web API
+Wants=network-online.target
+After=network-online.target postgresql.service
+Requires=postgresql.service
+[Service]
+Type=simple
+User=upwatch
+Group=upwatch
+WorkingDirectory=/opt/upwatch
+EnvironmentFile=/etc/upwatch/upwatch.env
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/upwatch/.venv/bin/gunicorn --bind 0.0.0.0:8080 --workers 2 --threads 4 --timeout 35 web:application
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/upwatch
+CapabilityBoundingSet=
+AmbientCapabilities=
+[Install]
+WantedBy=multi-user.target
